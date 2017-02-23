@@ -28,7 +28,6 @@ import org.apache.commons.jcs.engine.behavior.ICompositeCacheManager;
 import org.apache.commons.jcs.engine.behavior.IElementSerializer;
 import org.apache.commons.jcs.engine.logging.behavior.ICacheEventLogger;
 
-
 /**
  * Particular lateral caches should define their own factory.  It is
  * not necessary to extend this base factory, but it can be useful.
@@ -41,61 +40,60 @@ import org.apache.commons.jcs.engine.logging.behavior.ICacheEventLogger;
  * This abstraction layer should keep things cleaner.
  * <p>
  * @author Aaron Smuts
+ * 抽象工厂，生成的商品是：LateralCache。
  */
-public abstract class LateralCacheAbstractFactory
-	implements AuxiliaryCacheFactory
+public abstract class LateralCacheAbstractFactory implements AuxiliaryCacheFactory
 {
-    /** The auxiliary name */
-    private String name;
+	/** The auxiliary name */
+	private String name;
 
-    /**
-     * Creates a lateral cache.
-     * <p>
-     * @param attr
-     * @param cacheMgr
-     * @param cacheEventLogger
-     * @param elementSerializer
-     * @return AuxiliaryCache
-     */
-    @Override
-    public abstract <K, V> AuxiliaryCache<K, V> createCache(
-            AuxiliaryCacheAttributes attr, ICompositeCacheManager cacheMgr,
-            ICacheEventLogger cacheEventLogger, IElementSerializer elementSerializer );
+	/**
+	 * Creates a lateral cache.
+	 * <p>
+	 * @param attr
+	 * @param cacheMgr
+	 * @param cacheEventLogger
+	 * @param elementSerializer
+	 * @return AuxiliaryCache
+	 */
+	@Override
+	public abstract <K, V> AuxiliaryCache<K, V> createCache(AuxiliaryCacheAttributes attr,
+			ICompositeCacheManager cacheMgr, ICacheEventLogger cacheEventLogger, IElementSerializer elementSerializer);
 
-    /**
-     * Makes sure a listener gets created. It will get monitored as soon as it
-     * is used.
-     * <p>
-     * This should be called by create cache.
-     * <p>
-     * @param lac  ILateralCacheAttributes
-     * @param cacheMgr
-     *
-     * @return the listener if created, else null
-     */
-    public abstract <K, V>
-        ILateralCacheListener<K, V> createListener( ILateralCacheAttributes lac, ICompositeCacheManager cacheMgr );
+	/**
+	 * Makes sure a listener gets created. It will get monitored as soon as it
+	 * is used.
+	 * <p>
+	 * This should be called by create cache.
+	 * <p>
+	 * @param lac  ILateralCacheAttributes
+	 * @param cacheMgr
+	 *
+	 * @return the listener if created, else null
+	 */
+	public abstract <K, V> ILateralCacheListener<K, V> createListener(ILateralCacheAttributes lac,
+			ICompositeCacheManager cacheMgr);
 
-    /**
-     * Gets the name attribute of the LateralCacheFactory object
-     * <p>
-     * @return The name value
-     */
-    @Override
-    public String getName()
-    {
-        return this.name;
-    }
+	/**
+	 * Gets the name attribute of the LateralCacheFactory object
+	 * <p>
+	 * @return The name value
+	 */
+	@Override
+	public String getName()
+	{
+		return this.name;
+	}
 
-    /**
-     * Sets the name attribute of the LateralCacheFactory object
-     * <p>
-     * @param name
-     *            The new name value
-     */
-    @Override
-    public void setName( String name )
-    {
-        this.name = name;
-    }
+	/**
+	 * Sets the name attribute of the LateralCacheFactory object
+	 * <p>
+	 * @param name
+	 *            The new name value
+	 */
+	@Override
+	public void setName(String name)
+	{
+		this.name = name;
+	}
 }

@@ -1,5 +1,7 @@
 package org.apache.commons.jcs.auxiliary.lateral;
 
+import java.io.Serializable;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -23,291 +25,289 @@ import org.apache.commons.jcs.auxiliary.AbstractAuxiliaryCacheAttributes;
 import org.apache.commons.jcs.auxiliary.AuxiliaryCacheAttributes;
 import org.apache.commons.jcs.auxiliary.lateral.behavior.ILateralCacheAttributes;
 
-import java.io.Serializable;
-
 /**
  * This class stores attributes for all of the available lateral cache auxiliaries.
  */
-public class LateralCacheAttributes
-    extends AbstractAuxiliaryCacheAttributes
-    implements Serializable, ILateralCacheAttributes
+public class LateralCacheAttributes extends AbstractAuxiliaryCacheAttributes
+		implements Serializable, ILateralCacheAttributes
 {
-    /** Don't change */
-    private static final long serialVersionUID = -3408449508837393660L;
 
-    /** Default receive setting */
-    private static final boolean DEFAULT_RECEIVE = true;
+	/** Don't change */
+	private static final long serialVersionUID = -3408449508837393660L;
 
-    /** THe type of lateral */
-    private String transmissionTypeName = "UDP";
+	/** Default receive setting */
+	private static final boolean DEFAULT_RECEIVE = true;
 
-    /** indicates the lateral type, this needs to change */
-    private Type transmissionType = Type.UDP;
+	/** THe type of lateral */
+	private String transmissionTypeName = "UDP";
 
-    /** The http servers */
-    private String httpServers;
+	/** indicates the lateral type, this needs to change */
+	private Type transmissionType = Type.UDP;
 
-    /** used to identify the service that this manager will be operating on */
-    private String httpServer = "";
+	/** The http servers */
+	private String httpServers;
 
-    /** this needs to change */
-    private String udpMulticastAddr = "228.5.6.7";
+	/** used to identify the service that this manager will be operating on */
+	private String httpServer = "";
 
-    /** this needs to change */
-    private int udpMulticastPort = 6789;
+	/** this needs to change */
+	private String udpMulticastAddr = "228.5.6.7";
 
-    /** this needs to change */
-    private int httpListenerPort = 8080;
+	/** this needs to change */
+	private int udpMulticastPort = 6789;
 
-    /** disables gets from laterals */
-    private boolean putOnlyMode = true;
+	/** this needs to change */
+	private int httpListenerPort = 8080;
 
-    /**
-     * do we receive and broadcast or only broadcast this is useful when you don't want to get any
-     * notifications
-     */
-    private boolean receive = DEFAULT_RECEIVE;
+	/** disables gets from laterals */
+	private boolean putOnlyMode = true;
 
-    /** If the primary fails, we will queue items before reconnect.  This limits the number of items that can be queued. */
-    private int zombieQueueMaxSize = DEFAULT_ZOMBIE_QUEUE_MAX_SIZE;
+	/**
+	 * do we receive and broadcast or only broadcast this is useful when you don't want to get any
+	 * notifications
+	 */
+	private boolean receive = DEFAULT_RECEIVE;
 
-    /**
-     * Sets the httpServer attribute of the LateralCacheAttributes object
-     * <P>
-     * @param val The new httpServer value
-     */
-    @Override
-    public void setHttpServer( String val )
-    {
-        httpServer = val;
-    }
+	/** If the primary fails, we will queue items before reconnect.  This limits the number of items that can be queued. */
+	private int zombieQueueMaxSize = DEFAULT_ZOMBIE_QUEUE_MAX_SIZE;
 
-    /**
-     * Gets the httpServer attribute of the LateralCacheAttributes object
-     * @return The httpServer value
-     */
-    @Override
-    public String getHttpServer()
-    {
-        return httpServer;
-    }
+	/**
+	 * Sets the httpServer attribute of the LateralCacheAttributes object
+	 * <P>
+	 * @param val The new httpServer value
+	 */
+	@Override
+	public void setHttpServer(String val)
+	{
+		httpServer = val;
+	}
 
-    /**
-     * Sets the httpServers attribute of the LateralCacheAttributes object
-     * @param val The new httpServers value
-     */
-    @Override
-    public void setHttpServers( String val )
-    {
-        httpServers = val;
-    }
+	/**
+	 * Gets the httpServer attribute of the LateralCacheAttributes object
+	 * @return The httpServer value
+	 */
+	@Override
+	public String getHttpServer()
+	{
+		return httpServer;
+	}
 
-    /**
-     * Gets the httpSrvers attribute of the LateralCacheAttributes object
-     * @return The httpServers value
-     */
-    @Override
-    public String getHttpServers()
-    {
-        return httpServers;
-    }
+	/**
+	 * Sets the httpServers attribute of the LateralCacheAttributes object
+	 * @param val The new httpServers value
+	 */
+	@Override
+	public void setHttpServers(String val)
+	{
+		httpServers = val;
+	}
 
-    /**
-     * Sets the httpListenerPort attribute of the ILateralCacheAttributes object
-     * @param val The new tcpListenerPort value
-     */
-    @Override
-    public void setHttpListenerPort( int val )
-    {
-        this.httpListenerPort = val;
-    }
+	/**
+	 * Gets the httpSrvers attribute of the LateralCacheAttributes object
+	 * @return The httpServers value
+	 */
+	@Override
+	public String getHttpServers()
+	{
+		return httpServers;
+	}
 
-    /**
-     * Gets the httpListenerPort attribute of the ILateralCacheAttributes object
-     * @return The httpListenerPort value
-     */
-    @Override
-    public int getHttpListenerPort()
-    {
-        return this.httpListenerPort;
-    }
+	/**
+	 * Sets the httpListenerPort attribute of the ILateralCacheAttributes object
+	 * @param val The new tcpListenerPort value
+	 */
+	@Override
+	public void setHttpListenerPort(int val)
+	{
+		this.httpListenerPort = val;
+	}
 
-    /**
-     * Sets the udpMulticastAddr attribute of the LateralCacheAttributes object
-     * @param val The new udpMulticastAddr value
-     */
-    @Override
-    public void setUdpMulticastAddr( String val )
-    {
-        udpMulticastAddr = val;
-    }
+	/**
+	 * Gets the httpListenerPort attribute of the ILateralCacheAttributes object
+	 * @return The httpListenerPort value
+	 */
+	@Override
+	public int getHttpListenerPort()
+	{
+		return this.httpListenerPort;
+	}
 
-    /**
-     * Gets the udpMulticastAddr attribute of the LateralCacheAttributes object
-     * @return The udpMulticastAddr value
-     */
-    @Override
-    public String getUdpMulticastAddr()
-    {
-        return udpMulticastAddr;
-    }
+	/**
+	 * Sets the udpMulticastAddr attribute of the LateralCacheAttributes object
+	 * @param val The new udpMulticastAddr value
+	 */
+	@Override
+	public void setUdpMulticastAddr(String val)
+	{
+		udpMulticastAddr = val;
+	}
 
-    /**
-     * Sets the udpMulticastPort attribute of the LateralCacheAttributes object
-     * @param val The new udpMulticastPort value
-     */
-    @Override
-    public void setUdpMulticastPort( int val )
-    {
-        udpMulticastPort = val;
-    }
+	/**
+	 * Gets the udpMulticastAddr attribute of the LateralCacheAttributes object
+	 * @return The udpMulticastAddr value
+	 */
+	@Override
+	public String getUdpMulticastAddr()
+	{
+		return udpMulticastAddr;
+	}
 
-    /**
-     * Gets the udpMulticastPort attribute of the LateralCacheAttributes object
-     * @return The udpMulticastPort value
-     */
-    @Override
-    public int getUdpMulticastPort()
-    {
-        return udpMulticastPort;
-    }
+	/**
+	 * Sets the udpMulticastPort attribute of the LateralCacheAttributes object
+	 * @param val The new udpMulticastPort value
+	 */
+	@Override
+	public void setUdpMulticastPort(int val)
+	{
+		udpMulticastPort = val;
+	}
 
-    /**
-     * Sets the transmissionType attribute of the LateralCacheAttributes object
-     * @param val The new transmissionType value
-     */
-    @Override
-    public void setTransmissionType( Type val )
-    {
-        this.transmissionType = val;
-        this.transmissionTypeName = val.toString();
-    }
+	/**
+	 * Gets the udpMulticastPort attribute of the LateralCacheAttributes object
+	 * @return The udpMulticastPort value
+	 */
+	@Override
+	public int getUdpMulticastPort()
+	{
+		return udpMulticastPort;
+	}
 
-    /**
-     * Gets the transmissionType attribute of the LateralCacheAttributes object
-     * @return The transmissionType value
-     */
-    @Override
-    public Type getTransmissionType()
-    {
-        return this.transmissionType;
-    }
+	/**
+	 * Sets the transmissionType attribute of the LateralCacheAttributes object
+	 * @param val The new transmissionType value
+	 */
+	@Override
+	public void setTransmissionType(Type val)
+	{
+		this.transmissionType = val;
+		this.transmissionTypeName = val.toString();
+	}
 
-    /**
-     * Sets the transmissionTypeName attribute of the LateralCacheAttributes object
-     * @param val The new transmissionTypeName value
-     */
-    @Override
-    public void setTransmissionTypeName( String val )
-    {
-        this.transmissionTypeName = val;
-        this.transmissionType = Type.valueOf(val);
-    }
+	/**
+	 * Gets the transmissionType attribute of the LateralCacheAttributes object
+	 * @return The transmissionType value
+	 */
+	@Override
+	public Type getTransmissionType()
+	{
+		return this.transmissionType;
+	}
 
-    /**
-     * Gets the transmissionTypeName attribute of the LateralCacheAttributes object
-     * @return The transmissionTypeName value
-     */
-    @Override
-    public String getTransmissionTypeName()
-    {
-        return this.transmissionTypeName;
-    }
+	/**
+	 * Sets the transmissionTypeName attribute of the LateralCacheAttributes object
+	 * @param val The new transmissionTypeName value
+	 */
+	@Override
+	public void setTransmissionTypeName(String val)
+	{
+		this.transmissionTypeName = val;
+		this.transmissionType = Type.valueOf(val);
+	}
 
-    /**
-     * Sets the outgoingOnlyMode attribute of the ILateralCacheAttributes. When this is true the
-     * lateral cache will only issue put and remove order and will not try to retrieve elements from
-     * other lateral caches.
-     * @param val The new transmissionTypeName value
-     */
-    @Override
-    public void setPutOnlyMode( boolean val )
-    {
-        this.putOnlyMode = val;
-    }
+	/**
+	 * Gets the transmissionTypeName attribute of the LateralCacheAttributes object
+	 * @return The transmissionTypeName value
+	 */
+	@Override
+	public String getTransmissionTypeName()
+	{
+		return this.transmissionTypeName;
+	}
 
-    /**
-     * @return The outgoingOnlyMode value. Stops gets from going remote.
-     */
-    @Override
-    public boolean getPutOnlyMode()
-    {
-        return putOnlyMode;
-    }
+	/**
+	 * Sets the outgoingOnlyMode attribute of the ILateralCacheAttributes. When this is true the
+	 * lateral cache will only issue put and remove order and will not try to retrieve elements from
+	 * other lateral caches.
+	 * @param val The new transmissionTypeName value
+	 */
+	@Override
+	public void setPutOnlyMode(boolean val)
+	{
+		this.putOnlyMode = val;
+	}
 
-    /**
-     * Returns a clone of the attributes.
-     * @return Self
-     */
-    @Override
-    public AuxiliaryCacheAttributes copy()
-    {
-        try
-        {
-            return (AuxiliaryCacheAttributes) this.clone();
-        }
-        catch ( Exception e )
-        {
-            //noop
-        }
-        return this;
-    }
+	/**
+	 * @return The outgoingOnlyMode value. Stops gets from going remote.
+	 */
+	@Override
+	public boolean getPutOnlyMode()
+	{
+		return putOnlyMode;
+	}
 
-    /**
-     * @param receive The receive to set.
-     */
-    @Override
-    public void setReceive( boolean receive )
-    {
-        this.receive = receive;
-    }
+	/**
+	 * Returns a clone of the attributes.
+	 * @return Self
+	 */
+	@Override
+	public AuxiliaryCacheAttributes copy()
+	{
+		try
+		{
+			return (AuxiliaryCacheAttributes) this.clone();
+		}
+		catch (Exception e)
+		{
+			//noop
+		}
+		return this;
+	}
 
-    /**
-     * @return Returns the receive.
-     */
-    @Override
-    public boolean isReceive()
-    {
-        return receive;
-    }
+	/**
+	 * @param receive The receive to set.
+	 */
+	@Override
+	public void setReceive(boolean receive)
+	{
+		this.receive = receive;
+	}
 
-    /**
-     * The number of elements the zombie queue will hold. This queue is used to store events if we
-     * loose our connection with the server.
-     * <p>
-     * @param zombieQueueMaxSize The zombieQueueMaxSize to set.
-     */
-    @Override
-    public void setZombieQueueMaxSize( int zombieQueueMaxSize )
-    {
-        this.zombieQueueMaxSize = zombieQueueMaxSize;
-    }
+	/**
+	 * @return Returns the receive.
+	 */
+	@Override
+	public boolean isReceive()
+	{
+		return receive;
+	}
 
-    /**
-     * The number of elements the zombie queue will hold. This queue is used to store events if we
-     * loose our connection with the server.
-     * <p>
-     * @return Returns the zombieQueueMaxSize.
-     */
-    @Override
-    public int getZombieQueueMaxSize()
-    {
-        return zombieQueueMaxSize;
-    }
+	/**
+	 * The number of elements the zombie queue will hold. This queue is used to store events if we
+	 * loose our connection with the server.
+	 * <p>
+	 * @param zombieQueueMaxSize The zombieQueueMaxSize to set.
+	 */
+	@Override
+	public void setZombieQueueMaxSize(int zombieQueueMaxSize)
+	{
+		this.zombieQueueMaxSize = zombieQueueMaxSize;
+	}
 
-    /**
-     * @return debug string.
-     */
-    @Override
-    public String toString()
-    {
-        StringBuilder buf = new StringBuilder();
-        //buf.append( "cacheName=" + cacheName + "\n" );
-        //buf.append( "putOnlyMode=" + putOnlyMode + "\n" );
-        //buf.append( "transmissionTypeName=" + transmissionTypeName + "\n" );
-        //buf.append( "transmissionType=" + transmissionType + "\n" );
-        //buf.append( "tcpServer=" + tcpServer + "\n" );
-        buf.append( transmissionTypeName + httpServer + udpMulticastAddr + String.valueOf( udpMulticastPort ) );
-        return buf.toString();
-    }
+	/**
+	 * The number of elements the zombie queue will hold. This queue is used to store events if we
+	 * loose our connection with the server.
+	 * <p>
+	 * @return Returns the zombieQueueMaxSize.
+	 */
+	@Override
+	public int getZombieQueueMaxSize()
+	{
+		return zombieQueueMaxSize;
+	}
+
+	/**
+	 * @return debug string.
+	 */
+	@Override
+	public String toString()
+	{
+		StringBuilder buf = new StringBuilder();
+		//buf.append( "cacheName=" + cacheName + "\n" );
+		//buf.append( "putOnlyMode=" + putOnlyMode + "\n" );
+		//buf.append( "transmissionTypeName=" + transmissionTypeName + "\n" );
+		//buf.append( "transmissionType=" + transmissionType + "\n" );
+		//buf.append( "tcpServer=" + tcpServer + "\n" );
+		buf.append(transmissionTypeName + httpServer + udpMulticastAddr + String.valueOf(udpMulticastPort));
+		return buf.toString();
+	}
 }

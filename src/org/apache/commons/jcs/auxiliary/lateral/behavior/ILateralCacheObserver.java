@@ -22,10 +22,9 @@ package org.apache.commons.jcs.auxiliary.lateral.behavior;
 import org.apache.commons.jcs.engine.behavior.ICacheObserver;
 
 /**
- * Description of the Interface
+ * Description of the Interface 观察者模式，但是为空
  */
-public interface ILateralCacheObserver
-    extends ICacheObserver
+public interface ILateralCacheObserver extends ICacheObserver
 {
-    // nothing
+	// nothing
 }

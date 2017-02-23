@@ -31,44 +31,43 @@ import java.io.Serializable;
  * allowed to be spooled, etc.
  *
  */
-public interface ICacheElement<K, V>
-    extends Serializable
+public interface ICacheElement<K, V> extends Serializable
 {
 
-    /**
-     * Gets the cacheName attribute of the ICacheElement<K, V> object. The cacheName
-     * is also known as the region name.
-     *
-     * @return The cacheName value
-     */
-    String getCacheName();
+	/**
+	 * Gets the cacheName attribute of the ICacheElement<K, V> object. The cacheName
+	 * is also known as the region name.
+	 *
+	 * @return The cacheName value
+	 */
+	String getCacheName();
 
-    /**
-     * Gets the key attribute of the ICacheElement<K, V> object
-     *
-     * @return The key value
-     */
-    K getKey();
+	/**
+	 * Gets the key attribute of the ICacheElement<K, V> object
+	 *
+	 * @return The key value
+	 */
+	K getKey();
 
-    /**
-     * Gets the val attribute of the ICacheElement<K, V> object
-     *
-     * @return The val value
-     */
-    V getVal();
+	/**
+	 * Gets the val attribute of the ICacheElement<K, V> object
+	 *
+	 * @return The val value
+	 */
+	V getVal();
 
-    /**
-     * Gets the attributes attribute of the ICacheElement<K, V> object
-     *
-     * @return The attributes value
-     */
-    IElementAttributes getElementAttributes();
+	/**
+	 * Gets the attributes attribute of the ICacheElement<K, V> object
+	 *
+	 * @return The attributes value
+	 */
+	IElementAttributes getElementAttributes();
 
-    /**
-     * Sets the attributes attribute of the ICacheElement<K, V> object
-     *
-     * @param attr
-     *            The new attributes value
-     */
-    void setElementAttributes( IElementAttributes attr );
+	/**
+	 * Sets the attributes attribute of the ICacheElement<K, V> object
+	 *
+	 * @param attr
+	 *            The new attributes value
+	 */
+	void setElementAttributes(IElementAttributes attr);
 }

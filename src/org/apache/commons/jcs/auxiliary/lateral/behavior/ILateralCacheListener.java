@@ -25,27 +25,26 @@ import org.apache.commons.jcs.engine.behavior.ICompositeCacheManager;
 /**
  * Listens for lateral cache event notification.
  */
-public interface ILateralCacheListener<K, V>
-    extends ICacheListener<K, V>
-{
-    /**
-     * Initialize this listener
-     */
-    void init();
+public interface ILateralCacheListener<K, V> extends ICacheListener<K, V>
+{//监听器类，通过ICacheListener可以知道监听的事件是什么。但是不明白要设置这个干什么？ICompositeCacheManager
+	/**
+	 * Initialize this listener
+	 */
+	void init();
 
-    /**
-     * @param cacheMgr
-     *            The cacheMgr to set.
-     */
-    void setCacheManager( ICompositeCacheManager cacheMgr );
+	/**
+	 * @param cacheMgr
+	 *            The cacheMgr to set.
+	 */
+	void setCacheManager(ICompositeCacheManager cacheMgr);
 
-    /**
-     * @return Returns the cacheMgr.
-     */
-    ICompositeCacheManager getCacheManager();
+	/**
+	 * @return Returns the cacheMgr.
+	 */
+	ICompositeCacheManager getCacheManager();
 
-    /**
-     * Dispose this listener
-     */
-    void dispose();
+	/**
+	 * Dispose this listener
+	 */
+	void dispose();
 }

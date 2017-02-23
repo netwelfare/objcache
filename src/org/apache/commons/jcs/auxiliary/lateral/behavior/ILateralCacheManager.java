@@ -1,5 +1,9 @@
 package org.apache.commons.jcs.auxiliary.lateral.behavior;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.Map;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -23,50 +27,46 @@ import org.apache.commons.jcs.auxiliary.AuxiliaryCacheManager;
 import org.apache.commons.jcs.auxiliary.lateral.LateralCacheNoWait;
 import org.apache.commons.jcs.engine.behavior.ICacheServiceNonLocal;
 
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.Map;
-
 /**
  * This helps ensure some common behavior among LateraLCacheManagers for things
  * such as monitors.
- * <p>
+ * <p> 获取并发的manager
  * @author Aaron Smuts
  */
-public interface ILateralCacheManager
-    extends AuxiliaryCacheManager
+public interface ILateralCacheManager extends AuxiliaryCacheManager
 {
-    /**
-     * This is a temporary solution that allows the monitor to get the instances
-     * of a manager.
-     * <p>
-     * @return Map
-     */
-    Map<String, ? extends ILateralCacheManager> getInstances();
+	/**
+	 * This is a temporary solution that allows the monitor to get the instances
+	 * of a manager.
+	 * <p>
+	 * @return Map
+	 */
+	Map<String, ? extends ILateralCacheManager> getInstances();
 
-    /**
-     * This is a temporary solution that allows the monitor to get caches from an
-     * instance of a manager.
-     * <p>
-     * @return Map
-     */
-    Map<String, LateralCacheNoWait<?, ?>> getCaches();
+	/**
+	 * This is a temporary solution that allows the monitor to get caches from an
+	 * instance of a manager.
+	 * <p>
+	 * @return Map
+	 */
+	Map<String, LateralCacheNoWait<?, ?>> getCaches();
 
-    /**
-     * The restore calls this on the manger if a cache if found to be in error.
-     * <p>
-     * @return Object is the service if it can be fixed.
-     * @throws IOException
-     *             if the service cannot be fixed.
-     */
-    Object fixService() throws IOException;
+	/**
+	 * The restore calls this on the manger if a cache if found to be in error.
+	 * <p>
+	 * @return Object is the service if it can be fixed.
+	 * @throws IOException
+	 *             if the service cannot be fixed.
+	 */
+	Object fixService() throws IOException;
 
-    /**
-     * Sets the corrected service. The restore process will call this if it gets
-     * a good service back from fixService.
-     * <p>
-     * @param lateralService
-     * @param lateralWatch
-     */
-    void fixCaches( ICacheServiceNonLocal<Serializable, Serializable> lateralService, ILateralCacheObserver lateralWatch );
+	/**
+	 * Sets the corrected service. The restore process will call this if it gets
+	 * a good service back from fixService.
+	 * <p>
+	 * @param lateralService
+	 * @param lateralWatch
+	 */
+	void fixCaches(ICacheServiceNonLocal<Serializable, Serializable> lateralService,
+			ILateralCacheObserver lateralWatch);
 }

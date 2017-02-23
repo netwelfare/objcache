@@ -24,11 +24,9 @@ import org.apache.commons.jcs.engine.CacheWatchRepairable;
 
 /**
  * Same as CacheWatcherWrapper but implements the IRemoteCacheWatch interface.
- *
+ * 
  */
-public class LateralCacheWatchRepairable
-    extends CacheWatchRepairable
-    implements ILateralCacheObserver
+public class LateralCacheWatchRepairable extends CacheWatchRepairable implements ILateralCacheObserver
 {
-    //nothing
+	//nothing
 }

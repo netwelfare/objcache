@@ -1,5 +1,7 @@
 package org.apache.commons.jcs.auxiliary.lateral;
 
+import java.io.Serializable;
+
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -26,76 +28,75 @@ import org.apache.commons.jcs.engine.behavior.ICacheServiceNonLocal;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import java.io.Serializable;
-
 /**
  * Used to repair the lateral caches managed by the associated instance of LateralCacheManager.
+ * ¶ÔcacheµÄÐÞ¸´
  */
-public class LateralCacheRestore
-    implements ICacheRestore
+public class LateralCacheRestore implements ICacheRestore
 {
-    /** The logger */
-    private static final Log log = LogFactory.getLog( LateralCacheRestore.class );
+	/** The logger */
+	private static final Log log = LogFactory.getLog(LateralCacheRestore.class);
 
-    /** The lateral manager. */
-    private final ILateralCacheManager lcm;
+	/** The lateral manager. */
+	private final ILateralCacheManager lcm;
 
-    /** fixable indicator */
-    private boolean canFix = true;
+	/** fixable indicator */
+	private boolean canFix = true;
 
-    /** handle */
-    private Object lateralObj;
+	/** handle */
+	private Object lateralObj;
 
-    /**
-     * Constructs with the given instance of LateralCacheManager.
-     * <p>
-     * @param lcm
-     */
-    public LateralCacheRestore( ILateralCacheManager lcm )
-    {
-        this.lcm = lcm;
-    }
+	/**
+	 * Constructs with the given instance of LateralCacheManager.
+	 * <p>
+	 * @param lcm
+	 */
+	public LateralCacheRestore(ILateralCacheManager lcm)
+	{
+		this.lcm = lcm;
+	}
 
-    /**
-     * Returns true if the connection to the lateral host for the corresponding cache manager can
-     * be successfully re-established.
-     * <p>
-     * @return whether or not the cache can be fixed.
-     */
-    @Override
-    public boolean canFix()
-    {
-        if ( !canFix )
-        {
-            return canFix;
-        }
+	/**
+	 * Returns true if the connection to the lateral host for the corresponding cache manager can
+	 * be successfully re-established.
+	 * <p>
+	 * @return whether or not the cache can be fixed.
+	 */
+	@Override
+	public boolean canFix()
+	{
+		if (!canFix)
+		{
+			return canFix;
+		}
 
-        try
-        {
-            lateralObj = lcm.fixService();
-        }
-        catch ( Exception ex )
-        {
-            log.error( "Can't fix " + ex.getMessage() );
-            canFix = false;
-        }
+		try
+		{
+			lateralObj = lcm.fixService();
+		}
+		catch (Exception ex)
+		{
+			log.error("Can't fix " + ex.getMessage());
+			canFix = false;
+		}
 
-        return canFix;
-    }
+		return canFix;
+	}
 
-    /**
-     * Fixes up all the caches managed by the associated cache manager.
-     */
-    @Override
-    @SuppressWarnings("unchecked") // TODO: Strange cast. Need to revisit
-    public void fix()
-    {
-        if ( !canFix )
-        {
-            return;
-        }
-        lcm.fixCaches( (ICacheServiceNonLocal<Serializable, Serializable>) lateralObj, (ILateralCacheObserver) lateralObj );
-        String msg = "Lateral connection resumed.";
-        log.info( msg );
-    }
+	/**
+	 * Fixes up all the caches managed by the associated cache manager.
+	 */
+	@Override
+	@SuppressWarnings("unchecked") // TODO: Strange cast. Need to revisit
+	public void fix()
+	{
+		if (!canFix)
+		{
+			return;
+		}
+		lcm.fixCaches((ICacheServiceNonLocal<Serializable, Serializable>) lateralObj,
+				(ILateralCacheObserver) lateralObj);
+		String msg = "Lateral connection resumed.";
+		log.info(msg);
+	}
 }
