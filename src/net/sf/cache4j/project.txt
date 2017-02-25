@@ -1,0 +1,12 @@
+project=cache4j
+version=0.4
+copyright=Copyright (c) 2006, Yuriy Stepovoy. All rights reserved. <a href="mailto:stepovoy@gmail.com">email: stepovoy@gmail.com</a>
+
+如何设计一个缓存呢？这是一个业务问题，而不是一个技术问题。
+（1）cache接口
+（2）过期的object要清空，需要Cleaner
+（3）Config设置，有多个cache，每个cache有不同的设置参数
+（4）产生cache，应该有多个cache factory，
+（5）cache info的获取，相当于cache的监控问题
+（6）cache有同步的，堵塞的，种类不少：BlockingCache
+（7）数据存放的算法：new TreeMap(_config.getAlgorithmComparator());
